@@ -65,7 +65,7 @@ class BooksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(BooksRequest $request, Book $book)
+    public function update(Request $request, Book $book)
     {
         //
         $book->update([

@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BooksRequest extends FormRequest
+class StoreBookAuthorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;//Do this
+        return false;
     }
 
     /**
@@ -23,9 +23,6 @@ class BooksRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|unique:authors|max:25',
-            'description' => 'required|unique:authors',
-            'publication_year' => 'required',
         ];
     }
 }
