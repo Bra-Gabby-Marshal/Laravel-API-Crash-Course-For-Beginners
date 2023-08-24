@@ -6,7 +6,8 @@ use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
 use App\Http\Resources\AuthorsResource;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use App\Http\Requests\AuthorsRequest;
 
 class AuthorsController extends Controller
 {
@@ -30,7 +31,7 @@ class AuthorsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AuthorsRequest $request)
     {
         //
         $faker = \Faker\Factory::create(1);
@@ -62,11 +63,11 @@ class AuthorsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Author $author)
+    public function update(AuthorsRequest $request, Author $author)
     {
         //
         $author->update([
-            'name' => 'Dary'
+            'name' => $request->input('name')
         ]);
 
         return new AuthorsResource($author);
@@ -78,5 +79,7 @@ class AuthorsController extends Controller
     public function destroy(Author $author)
     {
         //
+        $author->delete();
+        return response(['message' => 'Deleted successfully', 204]);
     }
 }
